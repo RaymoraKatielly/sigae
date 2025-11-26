@@ -1,0 +1,20 @@
+{
+  "name": "Gestão Escolar ODS 4",
+  "short_name": "ODS4",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Aplicativo de gestão escolar alinhado ao ODS 4.",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
