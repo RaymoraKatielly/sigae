@@ -1,54 +1,49 @@
-/* --------------------------------------------------------
-   SIGAE – Lógica de navegação e formulários
----------------------------------------------------------*/
+/* ===================================================
+   SISTEMA DE NAVEGAÇÃO ENTRE TELAS – SIGAE
+=================================================== */
 
-// Função que troca tela
 function showScreen(id) {
-  const screens = document.querySelectorAll(".screen");
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(`screen-${id}`).classList.add("active");
 
-  screens.forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.screen === id);
+  });
 
-  const active = document.getElementById(`screen-${id}`);
-  if (active) active.classList.add("active");
+  document.querySelectorAll(".secondary-tab-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.screen === id);
+  });
 }
 
-// Inicializa navegação
 function initNavigation() {
-  // botões principais (login, aluno, etc)
-  const mainTabs = document.querySelectorAll(".tab-btn");
-
-  mainTabs.forEach(btn => {
+  document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       showScreen(btn.dataset.screen);
     });
   });
 
-  // botões secundários
-  const secondaryTabs = document.querySelectorAll(".secondary-tab-btn");
-
-  secondaryTabs.forEach(btn => {
+  document.querySelectorAll(".secondary-tab-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       showScreen(btn.dataset.screen);
     });
   });
 
-  // Tela inicial
-  showScreen("login");
+  showScreen("login"); // tela inicial
 }
 
-// Login fake só troca para dashboard
-function initLogin() {
-  const form = document.getElementById("form-login");
-  if (!form) return;
+/* ===================================================
+   FORMULÁRIO DE LOGIN (SIMULAÇÃO)
+=================================================== */
 
-  form.addEventListener("submit", e => {
+function initForms() {
+  const loginForm = document.getElementById("login-form");
+
+  loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     showScreen("aluno-dashboard");
   });
 }
 
-// Inicia tudo
-(function init() {
-  initNavigation();
-  initLogin();
-})();
+/* INICIALIZAÇÃO */
+initNavigation();
+initForms();
